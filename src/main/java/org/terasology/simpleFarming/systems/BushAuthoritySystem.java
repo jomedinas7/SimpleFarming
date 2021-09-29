@@ -18,7 +18,6 @@ import org.terasology.engine.entitySystem.systems.RegisterSystem;
 import org.terasology.engine.logic.common.ActivateEvent;
 import org.terasology.engine.logic.delay.DelayManager;
 import org.terasology.engine.logic.delay.DelayedActionTriggeredEvent;
-import org.terasology.module.inventory.systems.InventoryManager;
 import org.terasology.engine.logic.inventory.ItemComponent;
 import org.terasology.engine.logic.inventory.events.DropItemEvent;
 import org.terasology.engine.physics.events.ImpulseEvent;
@@ -29,16 +28,12 @@ import org.terasology.engine.world.WorldProvider;
 import org.terasology.engine.world.block.BlockComponent;
 import org.terasology.engine.world.block.BlockManager;
 import org.terasology.engine.world.block.entity.CreateBlockDropsEvent;
+import org.terasology.module.inventory.systems.InventoryManager;
 import org.terasology.simpleFarming.components.BushDefinitionComponent;
 import org.terasology.simpleFarming.components.BushGrowthStage;
 import org.terasology.simpleFarming.components.CheatGrowthComponent;
 import org.terasology.simpleFarming.components.SeedDefinitionComponent;
-import org.terasology.simpleFarming.events.AddGenomeRetention;
-import org.terasology.simpleFarming.events.DoDestroyPlant;
-import org.terasology.simpleFarming.events.DoRemoveBud;
-import org.terasology.simpleFarming.events.OnSeedPlanted;
-import org.terasology.simpleFarming.events.ProduceCreated;
-import org.terasology.simpleFarming.events.TransferGenomeEvent;
+import org.terasology.simpleFarming.events.*;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -196,7 +191,7 @@ public class BushAuthoritySystem extends BaseComponentSystem {
      * @return
      */
     public static Map.Entry<String, BushGrowthStage> getGrowthStage(BushDefinitionComponent bushComponent, int index) {
-        return (new ArrayList<>(bushComponent.growthStages.entrySet())).get(Math.min(bushComponent.growthStages.size() - 1, Math.max(0, index)));
+        return new ArrayList<>(bushComponent.growthStages.entrySet()).get(Math.min(bushComponent.growthStages.size() - 1, Math.max(0, index)));
     }
 
     /**

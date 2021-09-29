@@ -21,11 +21,7 @@ import org.terasology.engine.world.WorldProvider;
 import org.terasology.engine.world.block.Block;
 import org.terasology.engine.world.block.BlockManager;
 import org.terasology.engine.world.block.entity.CreateBlockDropsEvent;
-import org.terasology.simpleFarming.components.BushDefinitionComponent;
-import org.terasology.simpleFarming.components.CheatGrowthComponent;
-import org.terasology.simpleFarming.components.SeedDefinitionComponent;
-import org.terasology.simpleFarming.components.VineDefinitionComponent;
-import org.terasology.simpleFarming.components.VineNodeComponent;
+import org.terasology.simpleFarming.components.*;
 import org.terasology.simpleFarming.events.DoDestroyPlant;
 import org.terasology.simpleFarming.events.DoRemoveBud;
 import org.terasology.simpleFarming.events.OnSeedPlanted;
@@ -172,10 +168,8 @@ public class VineAuthoritySystem extends BaseComponentSystem {
             nodeComponent.length = recurseGrow(nodeComponent.child, vineComponent) + 1;
 
         } else if (nodeComponent.child != null) {
-            if (random.nextDouble() < BUD_CHANCE) {
-                if (addBud(node, vineComponent)) {
+            if (random.nextDouble() < BUD_CHANCE && addBud(node, vineComponent) {
                     return nodeComponent.length;
-                }
             }
             nodeComponent.length = recurseGrow(nodeComponent.child, vineComponent) + 1;
         } else {
